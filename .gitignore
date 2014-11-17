@@ -1,0 +1,8 @@
+# Java class files
+*.class
+
+# IDEA Ignores
+*.iml
+*.ipr
+*.iws
+.idea/
