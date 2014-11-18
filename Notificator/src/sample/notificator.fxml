@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<StackPane fx:controller="sample.NotificatorController" fx:id="stackPane" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="300.0"
+           xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane fx:id="imagePane" prefHeight="280.0" prefWidth="115.0">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="280.0" fitWidth="115.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+            </children>
+            <StackPane.margin>
+                <Insets left="185.0"/>
+            </StackPane.margin>
+        </Pane>
+        <Pane fx:id="labelPane" prefHeight="150.0" prefWidth="150.0">
+            <children>
+                <Label fx:id="label" layoutY="100.0" prefHeight="50.0" prefWidth="185.0" text="Label"/>
+            </children>
+            <StackPane.margin>
+                <Insets right="115.0"/>
+            </StackPane.margin>
+        </Pane>
+    </children>
+</StackPane>

@@ -19,6 +19,7 @@ public class Main extends Application {
 	private double dragStartY;
 
 	private Settings settingView = null;
+	private Notificator notificator = null;
 
 	@Override
 	public void start (Stage primaryStage) throws Exception {
@@ -76,6 +77,11 @@ public class Main extends Application {
 
 		connect.setOnAction(e -> {
 			System.out.println("Connect");
+			if (notificator == null) {
+				notificator = new Notificator();
+			}
+			primaryStage.hide();
+			notificator.open(primaryStage);
 		});
 
 		settings.setOnAction(e -> {
