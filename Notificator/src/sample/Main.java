@@ -79,7 +79,6 @@ public class Main extends Application {
 		});
 
 		settings.setOnAction(e -> {
-			//TODO 既にウィンドウが開いていれば，閉じる処理を行う
 			if (settingView == null) {
 				settingView = new Settings();
 			}

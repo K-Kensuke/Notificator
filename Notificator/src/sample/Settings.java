@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -16,11 +15,16 @@ public class Settings {
 		System.out.println("--- open ---");
 
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("settings.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings.fxml"));
 			Stage stage = new Stage();
 			stage.setTitle("Settings");
-			stage.setScene(new Scene(root, 400, 300));
+			stage.setScene(new Scene(fxmlLoader.load(), 400, 300));
+
+			SettingsController settingsController = fxmlLoader.getController();
+			settingsController.setMainStage(mainStage);
 			stage.show();
+
+			// 設定画面を閉じる処理
 			stage.setOnCloseRequest(e -> {
 				stage.close();
 				mainStage.show();

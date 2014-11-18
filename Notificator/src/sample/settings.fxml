@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="sample.SettingsController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="600.0" prefWidth="400.0">
          <children>
@@ -31,12 +26,12 @@
             </VBox>
             <VBox prefHeight="500.0" prefWidth="250.0">
                <children>
-                  <TextField promptText="192.168.0.100">
+                  <TextField fx:id="serverIPField" promptText="192.168.0.100">
                      <VBox.margin>
                         <Insets right="10.0" top="25.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField promptText="50000">
+                  <TextField fx:id="serverPortField" promptText="50000">
                      <VBox.margin>
                         <Insets right="10.0" top="25.0" />
                      </VBox.margin>
@@ -47,12 +42,12 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Save">
+            <Button fx:id="saveBtn" mnemonicParsing="false" text="Save">
                <HBox.margin>
                   <Insets left="100.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Cancel">
+            <Button fx:id="cancelBtn" mnemonicParsing="false" text="Cancel">
                <HBox.margin>
                   <Insets left="80.0" top="10.0" />
                </HBox.margin>
