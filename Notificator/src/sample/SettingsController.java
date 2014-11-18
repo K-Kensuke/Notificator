@@ -47,17 +47,36 @@ public class SettingsController implements Initializable {
 			serverIP = serverIPField.getCharacters().toString();
 			System.out.println("serverIP : " + serverIP);
 
+			try {
+				serverPort = Integer.valueOf(serverPortField.getCharacters().toString());
+			}
+			catch (NumberFormatException exception) {
+				// 数値以外が入力された場合
+				try {
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alert.fxml"));
+					Stage stage = new Stage();
+					stage.setTitle("Error");
+					stage.setScene(new Scene(fxmlLoader.load(), 300, 100));
+
+					// コントローラを取得
+					AlertController alertController = fxmlLoader.getController();
+					alertController.NumberFormatError();
+					stage.show();
+				}
+				catch (IOException ioexception) {
+					ioexception.printStackTrace();
+				}
+			}
+
 			final String ipRegex = "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
 					"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 			Pattern ipPattern = Pattern.compile(ipRegex);
 
-			if (ipPattern.matcher(serverIP).matches()) {
-				parameters.setServerIP(serverIP);
-				Stage stage = (Stage) saveBtn.getScene().getWindow();
-				stage.close();
-				mMainStage.show();
-			}
-			else {
+			final String portRegex = "(6553[0-5]|655[0-2]\\d|65[0-4]\\d{2}|6[0-4]\\d{3}|[1-5]\\d{4}|[1-9]\\d{0,3})";
+			Pattern portPattern = Pattern.compile(portRegex);
+
+			if (!ipPattern.matcher(serverIP).matches()) {
+				// IPアドレスの入力値が不正
 				try {
 					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alert.fxml"));
 					Stage stage = new Stage();
@@ -72,6 +91,30 @@ public class SettingsController implements Initializable {
 				catch (IOException exception) {
 					exception.printStackTrace();
 				}
+			}
+			else if (!portPattern.matcher(String.valueOf(serverPort)).matches()) {
+				// Port番号の入力値が不正
+				try {
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alert.fxml"));
+					Stage stage = new Stage();
+					stage.setTitle("Error");
+					stage.setScene(new Scene(fxmlLoader.load(), 300, 100));
+
+					// コントローラを取得
+					AlertController alertController = fxmlLoader.getController();
+					alertController.PortNumError();
+					stage.show();
+				}
+				catch (IOException exception) {
+					exception.printStackTrace();
+				}
+			}
+			else {
+				parameters.setServerIP(serverIP);
+				parameters.setServerPort(serverPort);
+				Stage stage = (Stage) saveBtn.getScene().getWindow();
+				stage.close();
+				mMainStage.show();
 			}
 		});
 
