@@ -31,7 +31,7 @@ public class SettingsController implements Initializable {
 
 	@Override
 	public void initialize (URL location, ResourceBundle resources) {
-		parameters = new Parameters();
+		parameters = Parameters.getInstance();
 
 		serverIP = parameters.getServerIP();
 		if (!serverIP.equals("")) {

@@ -43,8 +43,4 @@ public class NotificatorController implements Initializable {
 
 		label.setText(test);
 	}
-
-	public void setText (String text) {
-		label.setText(text);
-	}
 }
