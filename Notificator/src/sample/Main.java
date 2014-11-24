@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
 	private double dragStartX;
@@ -81,7 +83,13 @@ public class Main extends Application {
 				notificator = new Notificator();
 			}
 			primaryStage.hide();
-			notificator.open(primaryStage);
+
+			try {
+				notificator.open(primaryStage);
+			}
+			catch (IOException e1) {
+				e1.printStackTrace();
+			}
 		});
 
 		settings.setOnAction(e -> {
@@ -92,9 +100,7 @@ public class Main extends Application {
 			settingView.open(primaryStage);
 		});
 
-		quit.setOnAction(e -> {
-			Platform.exit();
-		});
+		quit.setOnAction(e -> Platform.exit());
 
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setScene(scene);

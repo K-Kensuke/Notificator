@@ -36,13 +36,4 @@ public class AlertController {
 			stage.close();
 		});
 	}
-
-	public void ParamNotSetError () {
-		label.setText("接続に必要なパラメータが設定されていません．");
-
-		button.setOnAction(e -> {
-			Stage stage = (Stage) button.getScene().getWindow();
-			stage.close();
-		});
-	}
 }
