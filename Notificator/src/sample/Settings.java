@@ -6,9 +6,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-/**
- * Created by ken on 11/17/14.
- */
 public class Settings {
 
 	public void open (Stage mainStage) {

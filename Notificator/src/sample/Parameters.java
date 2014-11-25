@@ -1,8 +1,5 @@
 package sample;
 
-/**
- * Created by ken on 11/18/14.
- */
 public class Parameters {
 	private static Parameters parameters = new Parameters();
 	private String ServerIP = "";

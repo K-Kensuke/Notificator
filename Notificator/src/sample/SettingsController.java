@@ -12,9 +12,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-/**
- * Created by ken on 11/18/14.
- */
 public class SettingsController implements Initializable {
 
 	public TextField serverIPField;

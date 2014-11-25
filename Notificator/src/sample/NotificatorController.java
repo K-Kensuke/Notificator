@@ -11,9 +11,6 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by ken on 11/18/14.
- */
 public class NotificatorController implements Initializable {
 	public StackPane stackPane;
 	public Pane imagePane;
