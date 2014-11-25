@@ -100,7 +100,10 @@ public class Main extends Application {
 			settingView.open(primaryStage);
 		});
 
-		quit.setOnAction(e -> Platform.exit());
+		quit.setOnAction(e -> {
+			notificator.close();
+			Platform.exit();
+		});
 
 		primaryStage.initStyle(StageStyle.TRANSPARENT);
 		primaryStage.setScene(scene);

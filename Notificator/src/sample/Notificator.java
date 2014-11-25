@@ -41,19 +41,16 @@ public class Notificator {
 		// task終了後の処理
 		socketReceiver.setOnSucceeded(e -> {
 			notificatorController.label.textProperty().unbind();
-			service.shutdown();
 			stage.close();
 			mainStage.show();
 		});
 		socketReceiver.setOnCancelled(e -> {
 			notificatorController.label.textProperty().unbind();
-			service.shutdown();
 			stage.close();
 			mainStage.show();
 		});
 		socketReceiver.setOnFailed(e -> {
 			notificatorController.label.textProperty().unbind();
-			service.shutdown();
 			stage.close();
 			mainStage.show();
 		});
@@ -81,6 +78,11 @@ public class Notificator {
 		stage.show();
 
 		service.submit(socketReceiver);
+	}
+
+
+	public void close () {
+		service.shutdown();
 	}
 }
 
