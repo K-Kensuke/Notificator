@@ -27,6 +27,10 @@ public class Main extends Application {
 	public void start (Stage primaryStage) throws Exception {
 		System.out.println("--- start ---");
 
+		//TODO 設定ファイルの読み込みと反映を行う
+		SettingValues settingValues = SettingValues.getInstance();
+		settingValues.readValues();
+
 		GridPane gridPane = new GridPane();
 		// これをしないと，白い背景が出て気持ち悪い
 		gridPane.setStyle("-fx-background-color: rgba(0, 0, 0, 0);");

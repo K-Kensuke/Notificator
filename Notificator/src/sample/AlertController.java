@@ -34,4 +34,13 @@ public class AlertController {
 			stage.close();
 		});
 	}
+
+	public void WriteValuesError () {
+		label.setText("設定値のファイルへの書き込みに失敗しました．");
+
+		button.setOnAction(e -> {
+			Stage stage = (Stage) button.getScene().getWindow();
+			stage.close();
+		});
+	}
 }

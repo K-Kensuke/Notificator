@@ -91,15 +91,15 @@ class SocketReceiver extends Task {
 
 	@Override
 	protected Object call () throws Exception {
-		Parameters parameters = Parameters.getInstance();
+		SettingValues settingValues = SettingValues.getInstance();
 
-		if (parameters.getServerIP().equals("") || parameters.getServerPort() == 0) {
+		if (settingValues.getServerIP().equals("") || settingValues.getServerPort() == 0) {
 			// 接続に必要なパラメータが設定されていない
 			updateMessage("Parameter doesn't set correctly");
 			return null;
 		}
 
-		Socket socket = new Socket(parameters.getServerIP(), parameters.getServerPort());
+		Socket socket = new Socket(settingValues.getServerIP(), settingValues.getServerPort());
 		Notificator.receive = true;
 
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));

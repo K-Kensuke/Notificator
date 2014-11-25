@@ -24,18 +24,18 @@ public class SettingsController implements Initializable {
 
 	private Stage mMainStage = null;
 
-	Parameters parameters;
+	SettingValues settingValues;
 
 	@Override
 	public void initialize (URL location, ResourceBundle resources) {
-		parameters = Parameters.getInstance();
+		settingValues = SettingValues.getInstance();
 
-		serverIP = parameters.getServerIP();
+		serverIP = settingValues.getServerIP();
 		if (!serverIP.equals("")) {
 			serverIPField.setText(serverIP);
 		}
 
-		serverPort = parameters.getServerPort();
+		serverPort = settingValues.getServerPort();
 		if (serverPort != 0) {
 			serverPortField.setText(String.valueOf(serverPort));
 		}
@@ -55,7 +55,6 @@ public class SettingsController implements Initializable {
 					stage.setTitle("Error");
 					stage.setScene(new Scene(fxmlLoader.load(), 300, 100));
 
-					// コントローラを取得
 					AlertController alertController = fxmlLoader.getController();
 					alertController.NumberFormatError();
 					stage.show();
@@ -80,7 +79,6 @@ public class SettingsController implements Initializable {
 					stage.setTitle("Error");
 					stage.setScene(new Scene(fxmlLoader.load(), 300, 100));
 
-					// コントローラを取得
 					AlertController alertController = fxmlLoader.getController();
 					alertController.IPaddressError();
 					stage.show();
@@ -97,7 +95,6 @@ public class SettingsController implements Initializable {
 					stage.setTitle("Error");
 					stage.setScene(new Scene(fxmlLoader.load(), 300, 100));
 
-					// コントローラを取得
 					AlertController alertController = fxmlLoader.getController();
 					alertController.PortNumError();
 					stage.show();
@@ -107,11 +104,34 @@ public class SettingsController implements Initializable {
 				}
 			}
 			else {
-				parameters.setServerIP(serverIP);
-				parameters.setServerPort(serverPort);
-				Stage stage = (Stage) saveBtn.getScene().getWindow();
-				stage.close();
-				mMainStage.show();
+				// IPアドレス，ポート番号の入力値に異常なし
+				settingValues.setServerIP(serverIP);
+				settingValues.setServerPort(serverPort);
+
+				try {
+					// xmlファイルに書き込み，設定画面を閉じてメイン画面を呼び出す
+					settingValues.writeValues();
+					Stage stage = (Stage) saveBtn.getScene().getWindow();
+					stage.close();
+					mMainStage.show();
+				}
+				catch (IOException e1) {
+					// xmlファイルへの書き込みに失敗
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alert.fxml"));
+					Stage stage = new Stage();
+					stage.setTitle("Error");
+
+					try {
+						stage.setScene(new Scene(fxmlLoader.load(), 300, 100));
+					}
+					catch (IOException e2) {
+						e2.printStackTrace();
+					}
+
+					AlertController alertController = fxmlLoader.getController();
+					alertController.WriteValuesError();
+					stage.show();
+				}
 			}
 		});
 
